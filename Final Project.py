@@ -17,4 +17,4 @@ def percentDecrease(incidents_85_99, incidents_00_14):
     return pd
 
 
-print(incidentData['airline'].loc)
+print(incidentData['airline'].loc[0])
