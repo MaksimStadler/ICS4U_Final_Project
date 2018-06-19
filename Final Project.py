@@ -3,13 +3,12 @@ from tkinter import *
 from pandas import *
 import matplotlib
 import matplotlib.pyplot as plt
-matplotlib.use('TkAgg')
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2TkAgg
 
 # read, sort, and distribute dataset into variables
-incidentData = read_csv('airline-safety.csv')
+airData = read_csv('airline-safety.csv')
 
-airlines = incidentData['airline'].tolist()
+airlines = airData['airline'].tolist()
 
 
 def percentDecrease(incidents_85_99, incidents_00_14):
@@ -17,4 +16,9 @@ def percentDecrease(incidents_85_99, incidents_00_14):
     return pd
 
 
-print(incidentData['airline'].loc[0])
+def incidentRate(airline, fatalities_00_14):
+    rate = fatalities_00_14 / 14
+    return ('from 2001 to 2014, there were {} fatalities per year on {}.').format(rate, airline)
+
+
+print(airData['airline'].loc[0])

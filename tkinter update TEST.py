@@ -1,15 +1,18 @@
-import tkinter
+from tkinter import *
 
-root = Tk()
+tk = Tk()
 
-panel = Label(root, image='208.jpg')
-panel.pack(side="bottom", fill="both", expand="yes")
+panel = Label(tk, image='208.jpg')
+panel.grid(row=0, column=0)
 
 
 def imageUpdate():
-    panel.configure(image=img2)
-    panel.image = img2
+    panel.configure(image='209.jpg')
+    panel.image = '209.jpg'
 
 
-root.bind("<Return>", callback)
-root.mainloop()
+upButton = Button(tk, text='Update')
+upButton.bind(imageUpdate)
+upButton.grid(row=1, column=0)
+
+tk.mainloop()
