@@ -1,18 +1,30 @@
 from tkinter import *
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 tk = Tk()
 
-panel = Label(tk, image='208.jpg')
-panel.grid(row=0, column=0)
+
+def addGraph():
+    f = Figure(figsize=(3, 3), dpi=100)
+    a = f.add_subplot(111)
+    a.plot([1, 2, 3, 4, 5, 6, 7, 8], [1, 2, 3, 4, 5, 6, 7, 8])
+    canvas = FigureCanvasTkAgg(f, tk)
+    canvas.show()
+    canvas.get_tk_widget().grid(row=2, column=0)
+
+    tk.update_idletasks()
 
 
-def imageUpdate():
-    panel.configure(image='209.jpg')
-    panel.image = '209.jpg'
+B = Button(tk, text="Change graph", command=addGraph)
 
+B.grid(row=0, column=1)
 
-upButton = Button(tk, text='Update')
-upButton.bind(imageUpdate)
-upButton.grid(row=1, column=0)
+f = Figure(figsize=(3, 3), dpi=100)
+a = f.add_subplot(111)
+a.plot([1, 2, 3, 4], [1, 2, 3, 4])
+canvas = FigureCanvasTkAgg(f, tk)
+canvas.show()
+canvas.get_tk_widget().grid(row=2, column=0)
 
 tk.mainloop()

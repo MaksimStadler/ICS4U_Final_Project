@@ -2,8 +2,10 @@
 from tkinter import *
 from pandas import *
 import matplotlib
+import seaborn as sb
 import matplotlib.pyplot as plt
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2TkAgg
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 # read, sort, and distribute dataset into variables
 airData = read_csv('airline-safety.csv')
@@ -16,9 +18,11 @@ def percentDecrease(incidents_85_99, incidents_00_14):
     return pd
 
 
-def incidentRate(airline, fatalities_00_14):
-    rate = fatalities_00_14 / 14
-    return ('from 2001 to 2014, there were {} fatalities per year on {}.').format(rate, airline)
+def incidentRate(airline, fatalities):
+    rate = fatalities / 14
+    return 'from 2001 to 2014, there were {} fatalities per year on {}.'.format(rate, airline)
 
 
-print(airData['airline'].loc[0])
+def userPlotFunc(option1, option2):
+    userPlot = sb.lmplot(x=option1, y=option2, data=airData)
+    return userPlot
