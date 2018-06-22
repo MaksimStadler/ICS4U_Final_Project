@@ -12,6 +12,8 @@ airData = read_csv('airline-safety.csv')
 
 airlines = airData['airline'].tolist()
 
+tk = Tk()
+
 
 def percentDecrease(incidents_85_99, incidents_00_14):
     pd = abs(incidents_85_99 - incidents_00_14) / incidents_85_99
@@ -25,4 +27,8 @@ def incidentRate(airline, fatalities):
 
 def userPlotFunc(option1, option2):
     userPlot = sb.lmplot(x=option1, y=option2, data=airData)
-    return userPlot
+    canvas = FigureCanvasTkAgg(userPlot, tk)
+    canvas.show()
+    canvas.get_tk_widget().grid(row=2, column=0)
+
+    tk.update_idletasks()
