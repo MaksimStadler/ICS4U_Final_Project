@@ -9,8 +9,9 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 # read, sort, and distribute dataset into variables
 airData = read_csv('airline-safety.csv')
+incidentData = read_csv('accident_details.txt', sep=' | ')
 
-airlines = airData['airline'].tolist()
+airlineList = airData['airline'].tolist()
 
 tk = Tk()
 
@@ -32,3 +33,6 @@ def userPlotFunc(option1, option2):
     canvas.get_tk_widget().grid(row=2, column=0)
 
     tk.update_idletasks()
+
+
+print(incidentData.loc[22])
