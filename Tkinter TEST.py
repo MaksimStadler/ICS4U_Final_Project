@@ -15,6 +15,8 @@ def addGraph():
 
     tk.update_idletasks()
 
+    label.config(text='Changed')
+
 
 tk.title('Airline Safety History')
 tk.geometry('600x700')
