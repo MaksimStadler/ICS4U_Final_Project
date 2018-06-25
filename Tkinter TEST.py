@@ -1,37 +1,41 @@
 from tkinter import *
+from pandas import *
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+
+incidentData = read_csv('airline_incident_data.csv')
 
 tk = Tk()
 
 
 def addGraph():
-    f = Figure(figsize=(3, 3), dpi=50)
-    a = f.add_subplot(111)
-    a.plot([1, 2, 3, 4, 5, 6, 7, 8], [1, 2, 3, 4, 5, 6, 7, 8])
+    f = Figure(figsize=(5, 7), dpi=90)
+    ax = f.add_subplot(111)
+
+    ax.barh("airline", "avail_seat_km_per_week", data=incidentData)
     canvas = FigureCanvasTkAgg(f, tk)
     canvas.show()
     canvas.get_tk_widget().grid(row=3, column=0, columnspan=2, sticky='nsew')
 
     tk.update_idletasks()
-
-    label.config(text='Changed')
+    if drop1.get() == 1:
+        print(drop1.get())
 
 
 tk.title('Airline Safety History')
-tk.geometry('600x700')
+tk.geometry('700x800')
 tk.resizable(False, False)
 
-drop1 = StringVar(tk)
+drop1 = StringVar()
 drop1.set(0)
-drop2 = StringVar(tk)
+drop2 = StringVar()
 drop2.set(0)
-drop3 = StringVar(tk)
+drop3 = StringVar()
 drop3.set(0)
-drop4 = StringVar(tk)
+drop4 = StringVar()
 drop4.set(0)
 
-airlineDropDown1 = OptionMenu(tk, drop1, 1, 2, 3)
+airlineDropDown1 = OptionMenu(tk, drop1, 1, 2, 3, )
 # airlineDropDown1.configure(height=1, width=30)
 airlineDropDown1.grid(row=0, column=0, sticky='ew')
 airlineDropDown2 = OptionMenu(tk, drop2, 1, 2, 3)
@@ -39,7 +43,7 @@ airlineDropDown2 = OptionMenu(tk, drop2, 1, 2, 3)
 airlineDropDown2.grid(row=0, column=1, sticky='ew')
 
 statisticButton1 = Button(text='Statistics', command=addGraph)
-statisticButton1.config(height=2)
+# statisticButton1.config(height=1)
 statisticButton1.grid(row=1, columnspan=2, sticky='nsew')
 
 label = Label(tk, text='TEXT')
@@ -54,12 +58,13 @@ airlineDropDown4 = OptionMenu(tk, drop4, 1, 2, 3)
 airlineDropDown4.grid(row=4, column=1, sticky='ew')
 
 statisticButton2 = Button(text='Statistics', command=addGraph)
-statisticButton2.config(height=2)
+# statisticButton2.config(height=1)
 statisticButton2.grid(row=5, columnspan=2, sticky='nsew')
 
-f = Figure(figsize=(10, 10), dpi=50)
-a = f.add_subplot(111)
-a.plot([1, 2, 3, 4], [1, 2, 3, 4])
+f = Figure(figsize=(5, 7), dpi=90)
+ax = f.add_subplot(111)
+
+ax.barh("airline", "avail_seat_km_per_week", data=incidentData)
 canvas = FigureCanvasTkAgg(f, tk)
 canvas.show()
 canvas.get_tk_widget().grid(row=3, column=0, columnspan=2, sticky='nsew')
@@ -74,3 +79,4 @@ tk.columnconfigure(0, weight=1)
 tk.columnconfigure(1, weight=1)
 
 tk.mainloop()
+print(drop1.get())
