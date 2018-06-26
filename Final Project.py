@@ -5,22 +5,21 @@ import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
-# Graph theme is set to dark for A S T H E T I C purposes
+# Graph theme is set to dark for A S T H E T I C
 plt.style.use('dark_background')
 
-# read in data files from web URL
-incidentData = read_csv('''
-https://raw.githubusercontent.com/
-datasets/five-thirty-eight-datasets/master/
-datasets/airline-safety/data/airline-safety.csv''')
+# read in data files from local storage
+incidentData = read_csv('airline_incident_data.csv')
+rankData = read_csv('airline_rank_data.csv').drop(columns=['airline', 'In top 100-2015?'])
 
-# airline and top 100 columns are dropped from rankdata to simplify indexing later
-rankData = read_csv('https://query.data.world/s/tahtclz4hjwzg352jllsbgwtafht2u').drop(
-    columns=['airline', 'In top 100-2015?'])
-
-# read in data files form local storage (optional)
-# incidentData = read_csv('airline_incident_data.csv')
-# rankData = read_csv('airline_rank_data.csv').drop(columns=['airline', 'In top 100-2015?'])
+# read in data files from web URL (optional)
+# incidentData = read_csv('''https://raw.githubusercontent.com/
+# datasets/five-thirty-eight-datasets/master/
+# datasets/airline-safety/data/airline-safety.csv''')
+#
+# # airline and top 100 columns are dropped from rankdata to simplify indexing later
+# rankData = read_csv('https://query.data.world/s/tahtclz4hjwzg352jllsbgwtafht2u').drop(
+#     columns=['airline', 'In top 100-2015?'])
 
 # convert airline column to a list for later use in dropdown
 airlineList = incidentData['airline'].tolist()
@@ -114,9 +113,9 @@ airlineDropOption.set('Choose an airline')
 functionDropOption = StringVar(tk)
 functionDropOption.set('Choose a statistic')
 graphDropOption1 = StringVar(tk)
-graphDropOption1.set('Choose a variable')
+graphDropOption1.set('Choose an X variable')
 graphDropOption2 = StringVar(tk)
-graphDropOption2.set('Choose another variable')
+graphDropOption2.set('Choose a Y variable')
 
 # dropdown menus are created using the airline, function, and graph variable lists created above,
 # they are also tied to the appropriate variables
