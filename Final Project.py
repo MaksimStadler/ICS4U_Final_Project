@@ -144,7 +144,7 @@ ax = f.add_subplot(111)
 # a temporary horizontal bar graph is created to show the seat kilometers per week on every airline in rankData
 ax.barh("airline", "avail_seat_km_per_week", data=incidentData)
 # x and y axis labels are set
-ax.set_xlabel('Seat Kilometers Per Week (Biilions)')
+ax.set_xlabel('Seat Kilometers Per Week (Billions)')
 ax.set_ylabel('Airlines')
 # tick number fonts are changed because the defaults are too large
 ax.yaxis.set_tick_params(labelsize=5)
