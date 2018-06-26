@@ -176,6 +176,8 @@ def userPlotFunc():
         ax.set_ylabel(graphDropOption2.get())
         ax.yaxis.set_tick_params(labelsize=7)
         ax.xaxis.set_tick_params(labelsize=7)
+        ax.get_xaxis().get_major_formatter().set_scientific(False)
+        ax.get_yaxis().get_major_formatter().set_scientific(False)
         canvas = FigureCanvasTkAgg(f, tk)
         canvas.draw()
         canvas.get_tk_widget().grid(row=3, column=0, columnspan=2, sticky='nsew')
