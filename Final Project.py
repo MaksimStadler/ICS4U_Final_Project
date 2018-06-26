@@ -1,8 +1,11 @@
 # import data, graphing, and tkinter libraries
 from tkinter import *
 from pandas import *
+import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+
+plt.style.use('dark_background')
 
 # read, sort, and distribute dataset into variables
 # incidentData = read_csv('''https://raw.githubusercontent.com/
@@ -70,6 +73,7 @@ def deathsPerAccident(airline, fatal_accidents_00_14, fatalities):
 tk = Tk()
 
 tk.title('Airline Statistics')
+tk.iconbitmap(default='icon.ico')
 tk.geometry('700x700')
 tk.resizable(False, False)
 
@@ -107,10 +111,14 @@ graphDropDown2.grid(row=4, column=1, sticky='ew')
 statisticLabel = Label(tk, text='(Statistics)')
 statisticLabel.grid(row=2, columnspan=2, sticky='nsew')
 
-f = Figure(figsize=(5, 6), dpi=70)
+f = Figure(dpi=100)
 ax = f.add_subplot(111)
-
 ax.barh("airline", "avail_seat_km_per_week", data=incidentData)
+ax.set_xlabel('Seat Kilometers Per Week (Biilions)')
+ax.set_ylabel('Airlines')
+ax.yaxis.set_tick_params(labelsize=5)
+ax.xaxis.set_tick_params(labelsize=7)
+ax.get_xaxis().get_major_formatter().set_scientific(False)
 canvas = FigureCanvasTkAgg(f, tk)
 canvas.draw()
 canvas.get_tk_widget().grid(row=3, column=0, columnspan=2, sticky='nsew')
@@ -125,6 +133,10 @@ def userPlotFunc():
         ax = f.add_subplot(111)
 
         ax.scatter(option1, option2, data=rankData)
+        ax.set_xlabel(graphDropOption1.get())
+        ax.set_ylabel(graphDropOption2.get())
+        ax.yaxis.set_tick_params(labelsize=7)
+        ax.xaxis.set_tick_params(labelsize=7)
         canvas = FigureCanvasTkAgg(f, tk)
         canvas.draw()
         canvas.get_tk_widget().grid(row=3, column=0, columnspan=2, sticky='nsew')
